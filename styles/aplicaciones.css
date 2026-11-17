@@ -1,0 +1,208 @@
+.applications-ledger {
+  margin-top: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.applications-head,
+.applications-row {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr) 392px;
+  column-gap: 24px;
+  align-items: center;
+}
+
+.applications-head {
+  padding-bottom: 12px;
+  color: var(--muted);
+  font: 500 14px/1.15 var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.applications-row {
+  border-top: 1px solid var(--line);
+  min-height: 133px;
+  padding-block: 8px;
+}
+
+.applications-row.pso { --sketch-accent: var(--teal); }
+.applications-row.ga { --sketch-accent: var(--blue); }
+
+.applications-sketch {
+  display: block;
+  width: 124px;
+  height: auto;
+  overflow: visible;
+  stroke: var(--line);
+  stroke-width: 1.5px;
+  fill: none;
+}
+
+.applications-sketch .sketch-main {
+  stroke: var(--sketch-accent);
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: 2.7px;
+}
+
+.applications-sketch .sketch-dashed { stroke-dasharray: 3 4; }
+.applications-sketch .sketch-dot { fill: var(--sketch-accent); stroke: none; }
+.applications-sketch .sketch-target { fill: var(--paper); stroke: var(--sketch-accent); }
+.applications-sketch .sketch-network { stroke-width: 1.2px; }
+.applications-sketch rect { fill: var(--line); fill-opacity: .26; }
+
+.applications-ledger .applications-row h2 {
+  margin: 0 0 5px;
+  color: var(--ink);
+  font-size: 29px;
+  line-height: 1.05;
+  font-weight: 650;
+  letter-spacing: -.035em;
+}
+
+.applications-ledger .applications-row p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.24;
+  max-width: 560px;
+}
+
+.applications-evidence {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.application-image {
+  display: block;
+  width: 180px;
+  height: 115px;
+  object-fit: contain;
+  background: white;
+}
+
+.applications-evidence strong {
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.16;
+}
+
+.st5-refs a,
+.st5-photo figcaption a {
+  width: max-content;
+  max-width: 100%;
+  color: var(--muted);
+  font: 400 13px/1.2 var(--mono);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  border: 0;
+}
+
+.st5-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 428px;
+  gap: 30px;
+  align-items: start;
+}
+
+.st5-mission {
+  color: var(--teal);
+  font: 600 15px/1.2 var(--mono);
+  letter-spacing: .08em;
+}
+
+.st5-layout .st5-story h1 {
+  margin: 12px 0 22px;
+  font-size: 56px;
+  line-height: .96;
+  letter-spacing: -.06em;
+}
+
+.st5-process { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 19px; padding: 11px 0 9px; border-block: 1px solid var(--line); }
+.st5-process-step { position: relative; display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start; padding-right: 7px; }
+.st5-process-step + .st5-process-step { padding-left: 11px; border-left: 1px solid var(--line); }
+.st5-process-step + .st5-process-step::before { position: absolute; left: -5px; top: 8px; width: 8px; height: 8px; border-top: 1.5px solid var(--teal); border-right: 1.5px solid var(--teal); background: var(--paper); content: ""; transform: rotate(45deg); }
+.st5-process-step .process-number { display: grid; width: 21px; height: 21px; place-items: center; border: 1.4px solid var(--teal); border-radius: 50%; color: var(--teal); font: 500 11px/1 var(--mono); }
+.st5-process-step b { display: block; font-size: 13px; line-height: 1.13; font-weight: 660; }
+.st5-process-step small { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.14; }
+
+.st5-steps { border-top: 1px solid var(--line); }
+
+.st5-step {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  column-gap: 10px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--line);
+  padding-block: 10px;
+}
+
+.st5-step strong {
+  color: var(--ink);
+  font-size: 19px;
+  line-height: 1.1;
+}
+
+.st5-layout .st5-step p,
+.st5-layout .st5-flight p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.28;
+}
+
+.st5-flight {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.st5-year {
+  color: var(--blue);
+  font-size: 63px;
+  font-weight: 710;
+  line-height: .93;
+  letter-spacing: -.065em;
+}
+
+.st5-flight strong {
+  display: block;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 680;
+  line-height: 1.15;
+}
+
+.st5-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 20px;
+  margin-top: 16px;
+}
+
+.st5-layout .st5-photo {
+  display: grid;
+  justify-items: center;
+  margin: 0;
+  padding: 16px 8px 12px;
+  background: transparent;
+}
+
+.st5-photo img {
+  display: block;
+  width: 376px;
+  height: auto;
+}
+
+.st5-photo figcaption {
+  width: 376px;
+  padding-top: 12px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.st5-photo figcaption strong { font-weight: 640; }
