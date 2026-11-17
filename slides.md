@@ -654,7 +654,43 @@ tone: dark
 ---
 
 <div class="thanks-slide">
-  <h1>Muchas gracias</h1>
+  <svg class="thanks-field" viewBox="0 0 660 500" role="img" aria-label="Trayectorias azules y verde azulado convergen hacia un punto luminoso">
+    <defs>
+      <radialGradient id="thanks-glow">
+        <stop stop-color="var(--amber)" stop-opacity=".19" />
+        <stop offset="1" stop-color="var(--amber)" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <circle cx="474" cy="250" r="130" fill="url(#thanks-glow)" />
+    <g fill="none" stroke="var(--amber)" stroke-width="1" stroke-dasharray="4 8" opacity=".32">
+      <circle cx="474" cy="250" r="40" /><circle cx="474" cy="250" r="78" />
+      <circle cx="474" cy="250" r="116" /><circle cx="474" cy="250" r="154" />
+    </g>
+    <g fill="none" stroke-width="1.5" stroke-linecap="round">
+      <path d="M 35 65 C 155 70 200 210 455 245" stroke="var(--blue)" opacity=".48" />
+      <path d="M 25 180 C 155 130 280 230 459 248" stroke="var(--blue)" opacity=".68" />
+      <path d="M 38 330 C 175 390 300 260 459 252" stroke="var(--blue)" opacity=".45" />
+      <path d="M 120 450 C 245 390 370 300 462 258" stroke="var(--blue)" opacity=".58" />
+      <path d="M 315 32 C 333 120 405 160 465 245" stroke="var(--teal)" opacity=".45" />
+      <path d="M 578 75 C 535 135 518 185 482 244" stroke="var(--teal)" opacity=".65" />
+      <path d="M 622 345 C 560 320 520 285 484 256" stroke="var(--teal)" opacity=".52" />
+      <path d="M 354 458 C 390 380 430 305 469 261" stroke="var(--teal)" opacity=".48" />
+    </g>
+    <g fill="var(--blue)">
+      <circle cx="35" cy="65" r="4" /><circle cx="25" cy="180" r="5" />
+      <circle cx="38" cy="330" r="4" /><circle cx="120" cy="450" r="4" />
+    </g>
+    <g fill="var(--teal)">
+      <circle cx="315" cy="32" r="4" /><circle cx="578" cy="75" r="4" />
+      <circle cx="622" cy="345" r="4" /><circle cx="354" cy="458" r="4" />
+    </g>
+    <circle cx="474" cy="250" r="12" fill="var(--amber)" stroke="var(--paper)" stroke-width="4" />
+  </svg>
+  <div class="thanks-copy">
+    <span class="thanks-kicker">ALGORITMOS EVOLUTIVOS / SWARM</span>
+    <h1>¡Gracias!</h1>
+    <span class="thanks-rule" aria-hidden="true"></span>
+  </div>
 </div>
 
 <!--
