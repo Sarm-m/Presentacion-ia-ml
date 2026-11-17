@@ -1,6 +1,6 @@
 # TOURING · Algoritmos evolutivos / Swarm
 
-Presentación en español para Introducción a la Inteligencia Artificial. Equipo: Daniel Castro, Santiago Silva, Sebastián Ramírez y Nicolás Pinilla. La exposición está calculada para 21:50, seguida de 2:40 de preguntas. La diapositiva 15 queda como apéndice bibliográfico.
+Presentación en español para Introducción a la Inteligencia Artificial. Equipo: Daniel Castro, Santiago Silva, Sebastián Ramírez y Nicolás Pinilla. La exposición está calculada para 21:50, seguida de 2:40 de preguntas. La diapositiva 16 contiene las referencias y la 17 cierra la presentación.
 
 ## Abrir la presentación
 
@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Abre [la presentación](http://localhost:3030/). Usa las flechas del teclado para navegar y avanzar los pasos de las diapositivas 6, 7 y 11. La flecha izquierda vuelve al paso anterior. [Vista del presentador](http://localhost:3030/presenter/) para consultar notas y controlar el tiempo. [Vista general](http://localhost:3030/overview/) para revisar el orden.
+Abre [la presentación](http://localhost:3030/). Usa las flechas del teclado para navegar y avanzar los pasos de las diapositivas 7, 8 y 12. La flecha izquierda vuelve al paso anterior. [Vista del presentador](http://localhost:3030/presenter/) para consultar notas y controlar el tiempo. [Vista general](http://localhost:3030/overview/) para revisar el orden.
 
 Las fuentes tipográficas, la fotografía y los diagramas se sirven desde el proyecto. Las citas llevan a sus fuentes cuando hay conexión.
 

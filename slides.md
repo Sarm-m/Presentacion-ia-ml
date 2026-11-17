@@ -88,7 +88,7 @@ sources: "HOLLAND (1975)  /  KENNEDY Y EBERHART (1995)  /  FUENTES FOTOGRÁFICAS
   <article class="history-origin ga-origin">
     <span class="date blue">1975</span>
     <div class="history-detail">
-      <figure class="historian-portrait"><img class="historian-photo" src="/assets/imagenes/john-holland-university-of-michigan.jpg" alt="John Holland, retratado en su oficina por la Universidad de Michigan" width="94" height="94" /><figcaption>John Holland</figcaption></figure>
+      <figure class="historian-portrait"><div class="holland-crop"><img src="/assets/imagenes/john-holland-santa-fe.jpg" alt="Retrato de John Holland publicado por el Santa Fe Institute" /></div><figcaption>John Holland</figcaption></figure>
       <div class="history-copy">
         <h2>Algoritmos Genéticos (GA)</h2>
         <p class="history-name"><i>Genetic Algorithm</i> significa «Algoritmo Genético».</p>
@@ -125,9 +125,44 @@ Daniel Castro · 1:40
 
 Ubica el problema dentro de IA. Optimizar significa buscar un valor o configuración que maximice o minimice una función. Una metaheurística aporta un marco de búsqueda que puede aplicarse a distintos problemas. Holland es un hito de los GA, y PSO es un exponente de la inteligencia de enjambre. El origen colectivo inspira el método. Si se usa en un clasificador con etiquetas, la tarea sigue siendo supervisada. Para ajustar hiperparámetros se entrena el modelo y se mide en validación. Si la tarea consiste en encontrar una geometría de antena, podemos optimizar físicamente sin tener un problema de aprendizaje.
 
-Fuentes y fotografías. [H75], [KE95], [University of Michigan: John Holland](https://lsa.umich.edu/cscs/people/in-memoriam/JohnHolland1929-2015.html), [ACISS 2009: James Kennedy y Russell Eberhart, diapositiva 9](https://ecs.wgtn.ac.nz/foswiki/pub/Groups/ECRG/ResearchTeam/vuw-pso-xli.pdf).
+Fuentes y fotografías. [H75], [KE95], [Santa Fe Institute: John Holland](https://www.santafe.edu/news-center/news/in-memoriam-john-holland), [ACISS 2009: James Kennedy y Russell Eberhart, diapositiva 9](https://ecs.wgtn.ac.nz/foswiki/pub/Groups/ECRG/ResearchTeam/vuw-pso-xli.pdf).
 
-Transición: «Empecemos con la familia que construye nuevas soluciones a partir de una población».
+Transición: «Veamos de dónde vienen las ideas de ambos métodos».
+-->
+
+---
+layout: touring
+section: "01 / INTRODUCCIÓN"
+sources: "HOLLAND (1975)  /  KENNEDY Y EBERHART (1995)"
+---
+
+<h1 class="slide-title">Dos inspiraciones en la naturaleza</h1>
+
+<div class="nature-comparison">
+  <figure class="nature-case nature-ga">
+    <h2>Algoritmo genético (GA)</h2>
+    <div class="nature-image"><img src="/assets/imagenes/seleccion-pinzones.png" alt="Diagrama de pinzones con distintas formas de pico según su dieta" /></div>
+    <figcaption>
+      <strong>Selección natural</strong>
+      <p>Los pinzones ilustran cómo el entorno favorece distintos rasgos heredables. En GA se seleccionan candidatos, se cruzan sus representaciones y se introducen mutaciones.</p>
+    </figcaption>
+  </figure>
+  <figure class="nature-case nature-pso">
+    <h2>Optimización por enjambre<br>de partículas (PSO)</h2>
+    <div class="nature-image"><img src="/assets/imagenes/bandada-estorninos.jpg" alt="Bandada de estorninos en vuelo coordinado sobre Gretna" /></div>
+    <figcaption>
+      <strong>Movimiento colectivo</strong>
+      <p>La bandada ilustra cómo se coordina un grupo. En PSO cada partícula ajusta su movimiento con su mejor hallazgo y el mejor del enjambre.</p>
+    </figcaption>
+  </figure>
+</div>
+
+<!--
+Daniel Castro · 0:45
+
+A la izquierda, señala los picos: distintos alimentos favorecen distintos rasgos. Las mutaciones aportan variación sin anticipar qué rasgo será útil. El algoritmo toma la idea de seleccionar, recombinar y variar para generar soluciones nuevas. A la derecha, fíjate en cómo cambia la forma de la bandada mientras cada ave se mueve. En PSO las soluciones se mueven en un espacio matemático y aprovechan sus propios hallazgos y los del grupo. Las dos imágenes ilustran la inspiración.
+
+Transición: «Veamos primero cómo se construye la siguiente generación del algoritmo genético».
 -->
 
 ---
@@ -160,7 +195,7 @@ sources: "HOLLAND (1975)  /  LUKE (2026)"
 </div>
 
 <!--
-Daniel Castro · 1:40
+Daniel Castro · 0:55
 
 La cadena 0101 significa 5. El algoritmo evalúa al 5 por su altura, 7. El 10 tiene altura 9. Los cuatro individuos forman una población. En la demostración seleccionamos los mejor puntuados para hacer visibles las operaciones. Existen variantes con selección probabilística y otras codificaciones. El cruce mezcla partes conocidas. La mutación puede introducir un valor que esa combinación no tenía. Llamamos generación a cada renovación de la población.
 
@@ -179,6 +214,7 @@ sources: "KENNEDY Y EBERHART (1995)  /  SHI Y EBERHART (1998)"
 <p class="slide-subtitle">La posición es una solución y la velocidad indica cómo cambiarla.</p>
 
 <div class="pso-model">
+  <div>
   <svg viewBox="0 0 647 304" role="img" aria-labelledby="pso-forces">
     <title id="pso-forces">Una partícula tiene velocidad hacia la derecha. Su mejor personal queda a la izquierda y la mejor posición compartida queda más a la derecha.</title>
     <defs>
@@ -205,20 +241,30 @@ sources: "KENNEDY Y EBERHART (1995)  /  SHI Y EBERHART (1998)"
       <text x="554" y="253" text-anchor="middle" fill="var(--teal)">gbest</text>
     </g>
   </svg>
+    <div class="pso-example">
+      <p class="micro">EJEMPLO HIPOTÉTICO EN UNA DIMENSIÓN · − IZQUIERDA / + DERECHA</p>
+      <div class="pso-sum" aria-label="Dos hacia la derecha, menos uno hacia la izquierda, más tres hacia la derecha, igual a más cuatro hacia la derecha">
+        <span><b>+2</b>Inercia →</span>
+        <span class="blue"><b>− 1</b>Personal ←</span>
+        <span class="teal"><b>+ 3</b>Social →</span>
+        <span class="pso-result"><b>= +4</b>Se mueve a la derecha →</span>
+      </div>
+    </div>
+  </div>
   <div>
     <dl class="pso-terms">
       <div><dt>Inercia</dt><dd>Conserva parte del movimiento previo.</dd></div>
-      <div><dt class="blue">Mejor personal</dt><dd>Mejor posición que visitó esa partícula.</dd></div>
-      <div><dt class="teal">Mejor del enjambre</dt><dd>Mejor posición hallada por el grupo.</dd></div>
+      <div><dt class="blue">Mejor personal · pbest</dt><dd>Mejor posición que visitó esa partícula.</dd></div>
+      <div><dt class="teal">Mejor del enjambre · gbest</dt><dd>Mejor posición hallada por el grupo hasta ahora.</dd></div>
     </dl>
-    <p class="pso-foot">El enjambre comparte su mejor hallazgo.</p>
+    <p class="pso-foot">El óptimo global puede seguir siendo desconocido.</p>
   </div>
 </div>
 
 <!--
 Santiago Silva · 1:30
 
-En PSO cada partícula recorre posiciones y guarda un récord propio. El enjambre global comparte el mejor de esos récords. Señala las tres flechas: parte del impulso previo, una atracción a pbest y otra a gbest. Pueden apuntar en sentidos distintos y entran en una suma ponderada y aleatoria. El dibujo muestra direcciones posibles, con longitudes esquemáticas. Gbest es la mejor solución conocida por el grupo. El óptimo global del problema se define sobre todo el espacio. Usamos el PSO con inercia y vecindad global.
+En PSO cada partícula representa una solución. Recorre posiciones y guarda un récord propio. El enjambre global comparte el mejor de esos récords. Señala las tres flechas: parte del impulso previo, una atracción a pbest y otra a gbest. Pueden apuntar en sentidos distintos y entran en una suma ponderada y aleatoria. El dibujo muestra direcciones posibles, con longitudes esquemáticas. Di: «Arrastra dos hacia la derecha del movimiento previo, la memoria personal aporta uno a la izquierda y el grupo aporta tres a la derecha. Al sumar, quedan cuatro hacia la derecha». Las contribuciones son hipotéticas. La dirección final depende de la suma y puede diferir de la dirección de gbest. Gbest es la mejor solución conocida por el grupo. El óptimo global del problema se define sobre todo el espacio. Usamos el PSO con inercia y vecindad global.
 
 Fuentes: [KE95], [SE98].
 
@@ -272,7 +318,7 @@ Inicia A en 2, B en 8 y C en 10. Evalúa sus alturas 5, 5 y 9. Cada una registra
 
 [click] A llega a x = 6,5 con altura 4 y conserva su mejor personal en x = 2, de altura 5.
 [click] B mide altura 10 en x = 10,5 y el enjambre actualiza su mejor registro.
-[click] B mide 11 en x = 11. Observa cómo cambian las posiciones del resto.
+[click] B mide 11 en x = 11. A y C coinciden en x = 10,25: el punto azul y el anillo violeta comparten coordenada. Los círculos huecos indican posiciones anteriores.
 
 Los factores aleatorios se fijaron en 0,5 para reproducir la aritmética. La inercia es 0,5 y los coeficientes de atracción valen 1. Este ejemplo muestra tres iteraciones. En práctica el ciclo se repite hasta alcanzar el criterio de parada, como agotar las evaluaciones. El máximo del terreno sigue en x = 12 con altura 13.
 
@@ -360,38 +406,136 @@ Transición: «Antes de elegir alguno, revisemos dos alternativas de búsqueda y
 ---
 layout: touring
 section: "06 / COMPARACIÓN CON OTRAS TÉCNICAS"
-sources: "BOYD Y VANDENBERGHE (2004)  /  BERGSTRA Y BENGIO (2012)  /  SCIKIT-LEARN"
+sources: "AICKELIN Y DOWSLAND (2000)  /  ISHAQUE ET AL. (2012)"
 ---
 
-<h1 class="slide-title">¿Cuándo conviene usar GA o PSO?</h1>
-
-<div class="choice-grid">
-  <div>
-    <h2>Métodos para buscar una solución</h2>
-    <div class="choice-row">
-      <b>Gradiente</b><span>Cuando hay derivadas útiles, ofrecen una dirección local para mejorar.</span>
-    </div>
-    <div class="choice-row">
-      <b>Búsqueda aleatoria</b><span>Sirve como referencia de bajo costo para juzgar si guiar la búsqueda aporta valor.</span>
-    </div>
-    <div class="choice-row">
-      <b>GA o PSO</b><span>Considerarlos con objetivos evaluables, gradientes poco prácticos y presupuesto para explorar.</span>
-    </div>
+<div class="decision-slide">
+  <h1 class="slide-title">¿Qué tipo de solución necesitas encontrar?</h1>
+  <div class="decision-paths">
+    <section class="decision-path">
+      <p class="decision-method">ALGORITMO GENÉTICO (GA)</p>
+      <h2>Combinar elementos</h2>
+      <p class="decision-criteria">Considera GA si hay muchas formas de asignar, ordenar o seleccionar y puedes cruzar y mutar propuestas.</p>
+      <figure class="decision-figure">
+        <svg viewBox="0 0 536 166" role="img" aria-label="Dos horarios candidatos. El horario nuevo toma los primeros dos turnos del primero y los últimos dos del segundo. Las letras son personas.">
+          <g fill="var(--muted)" font-size="15" text-anchor="middle">
+            <text x="185" y="18">Lun.</text><text x="265" y="18">Mar.</text><text x="345" y="18">Mié.</text><text x="425" y="18">Jue.</text>
+          </g>
+          <path d="M 305 29 V 101" stroke="var(--line)" stroke-dasharray="3 4" />
+          <g fill="var(--muted)" font-size="17">
+            <text x="12" y="50">Propuesta 1</text>
+            <text x="12" y="86">Propuesta 2</text>
+            <text x="12" y="140" fill="var(--blue)" font-weight="650">Tras el cruce</text>
+          </g>
+          <rect x="150" y="29" width="150" height="29" rx="4" fill="var(--blue)" />
+          <rect x="310" y="65" width="150" height="29" rx="4" fill="var(--blue)" fill-opacity=".18" />
+          <g fill="var(--line)" fill-opacity=".26">
+            <rect x="310" y="29" width="150" height="29" rx="4" />
+            <rect x="150" y="65" width="150" height="29" rx="4" />
+          </g>
+          <path d="M 145 44 H 137 V 134 H 149 M 385 95 V 119" fill="none" stroke="var(--blue)" stroke-opacity=".52" stroke-dasharray="3 3" />
+          <rect x="150" y="119" width="150" height="31" rx="4" fill="var(--blue)" />
+          <rect x="310" y="119" width="150" height="31" rx="4" fill="var(--blue)" fill-opacity=".18" />
+          <g class="decision-assignments" text-anchor="middle" fill="var(--ink)" font-weight="640">
+            <text x="185" y="50" fill="var(--paper)">A</text><text x="265" y="50" fill="var(--paper)">B</text><text x="345" y="50">A</text><text x="425" y="50">C</text>
+            <text x="185" y="86">C</text><text x="265" y="86">A</text><text x="345" y="86">D</text><text x="425" y="86">B</text>
+            <text x="185" y="141" fill="var(--paper)">A</text><text x="265" y="141" fill="var(--paper)">B</text>
+            <text x="345" y="141" fill="var(--blue)">D</text><text x="425" y="141" fill="var(--blue)">B</text>
+          </g>
+        </svg>
+        <figcaption>Esquema didáctico. Cada letra representa a una persona.</figcaption>
+      </figure>
+      <p class="decision-example"><strong>Turnos de enfermería.</strong> Con datos de un hospital británico, GA combinó horarios para cubrir turnos y respetar contratos.</p>
+    </section>
+    <section class="decision-path decision-pso">
+      <p class="decision-method">PARTICLE SWARM OPTIMIZATION (PSO)</p>
+      <h2>Ajustar valores numéricos</h2>
+      <p class="decision-criteria">Considera PSO si puedes ajustar valores en un intervalo continuo y medir el rendimiento de cada prueba.</p>
+      <figure class="decision-figure">
+        <svg viewBox="0 0 536 166" role="img" aria-label="Curva ilustrativa de potencia frente al ajuste del convertidor. Las partículas representan ajustes probados y el punto ámbar indica la mayor potencia medida hasta el momento.">
+          <path d="M 61 29 V 132 H 482" fill="none" stroke="var(--line)" stroke-width="1.5" />
+          <text x="61" y="18" fill="var(--muted)" font-size="15">Potencia</text>
+          <text x="482" y="154" text-anchor="end" fill="var(--muted)" font-size="15">Ajuste del convertidor</text>
+          <path d="M 61 121 C 84 112 104 79 137 70 C 173 53 185 111 217 103 C 252 97 273 62 317 45 C 365 23 391 77 413 89 C 438 106 462 110 482 123" fill="none" stroke="var(--teal)" stroke-opacity=".63" stroke-width="2.5" />
+          <path d="M 137 75 V 132 M 217 108 V 132 M 317 50 V 132 M 413 94 V 132" stroke="var(--line)" stroke-dasharray="4 4" />
+          <path d="M 147 115 H 188 M 181 109 L 188 115 L 181 121 M 228 115 H 274 M 267 109 L 274 115 L 267 121 M 402 115 H 356 M 363 109 L 356 115 L 363 121" fill="none" stroke="var(--teal)" stroke-width="1.8" stroke-linejoin="round" />
+          <g fill="var(--teal)" stroke="var(--paper)" stroke-width="2">
+            <circle cx="137" cy="70" r="6" /><circle cx="217" cy="103" r="6" /><circle cx="413" cy="89" r="6" />
+          </g>
+          <circle cx="317" cy="45" r="8" fill="var(--amber)" stroke="var(--paper)" stroke-width="2" />
+          <text x="332" y="26" fill="var(--ink)" font-size="15" font-weight="650">Mejor medido</text>
+        </svg>
+        <figcaption>Esquema didáctico. Cada punto representa un ajuste probado.</figcaption>
+      </figure>
+      <p class="decision-example"><strong>Paneles solares.</strong> En una prueba con sombra parcial, PSO ajustó el convertidor para extraer más potencia.</p>
+    </section>
   </div>
-  <aside class="learning-box">
-    <h2>Algoritmos de aprendizaje</h2>
-    <p><strong>K-means</strong> agrupa datos. Su procedimiento optimiza la dispersión dentro de los grupos.</p>
-    <p><strong>Random Forest</strong> aprende con etiquetas para clasificar o predecir.</p>
-  </aside>
+  <p class="decision-summary"><strong>GA</strong> crea variantes mediante cruce y mutación. <strong>PSO</strong> desplaza partículas guiadas por sus mejores hallazgos.</p>
 </div>
-<p class="budget"><b>Ejemplo de uso.</b> PSO puede buscar los hiperparámetros de un clasificador que se evalúa en validación.</p>
+
+<style>
+.decision-slide .decision-paths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+  margin-top: 26px;
+}
+.decision-slide .decision-path {
+  --path-accent: var(--blue);
+  border-top: 3px solid var(--path-accent);
+  padding-top: 12px;
+}
+.decision-slide .decision-pso { --path-accent: var(--teal); }
+.decision-slide .decision-method {
+  color: var(--path-accent);
+  font: 600 16px/1.2 var(--mono);
+  letter-spacing: .035em;
+}
+.decision-slide .decision-path h2 {
+  margin-top: 6px;
+  font-size: 37px;
+  line-height: 1.08;
+  font-weight: 720;
+  letter-spacing: -.037em;
+}
+.decision-slide .decision-criteria {
+  min-height: 51px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.27;
+}
+.decision-slide .decision-figure {
+  margin: 9px 0 12px;
+  padding-block: 6px 9px;
+  border-block: 1px solid var(--line);
+}
+.decision-slide .decision-figure svg { display: block; width: 100%; height: 152px; }
+.decision-slide .decision-figure svg text { font-size: 17px; }
+.decision-slide .decision-figure .decision-assignments text { font-size: 21px; }
+.decision-slide .decision-figure figcaption { color: var(--muted); font-size: 14px; }
+.decision-slide .decision-example { font-size: 19px; line-height: 1.29; }
+.decision-slide .decision-summary {
+  margin-top: 19px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+  font-size: 21px;
+  letter-spacing: -.01em;
+}
+.decision-slide .decision-summary strong:first-child { color: var(--blue); }
+.decision-slide .decision-summary strong:last-child { color: var(--teal); }
+</style>
 
 <!--
 Nicolás Pinilla · 1:55
 
-El gradiente usa información local cuando se cuenta con derivadas aprovechables. La búsqueda aleatoria prueba candidatos independientes de los resultados previos y ofrece una referencia razonable, incluso para algunos hiperparámetros. Si el objetivo es evaluable pero tiene discontinuidades o es una simulación, puede tener sentido probar GA o PSO y exigir una mejora frente a esa referencia. K-means es aprendizaje no supervisado y su objetivo formal usa distancias. Random Forest es un método supervisado. Ambos pueden recibir hiperparámetros seleccionados por un optimizador externo. La validación elige, y el conjunto de prueba estima rendimiento final.
+Pregunta qué tendría que escribir alguien para describir una solución. Si escribe quién cubre cada turno, hay muchas combinaciones que pueden probarse. Señala cómo se cruzan dos propuestas en el esquema: se conservan las primeras asignaciones de una y las últimas de la otra. La mutación puede cambiar una asignación. Después se comprueba la cobertura y el cumplimiento de las reglas o se penalizan las infracciones. Aickelin y Dowsland estudiaron este problema con datos de un hospital británico. El esquema de cuatro días simplifica su representación semanal y las letras son ficticias.
 
-Fuentes: [BV04], [BB12], [SkL], [HD08].
+Si la solución se describe con números ajustables, como cuánto tiempo permanece activo el interruptor de un convertidor solar en cada ciclo, cada partícula puede proponer un valor. Ishaque y colegas midieron la potencia para comparar ajustes con sombreado parcial. Señala que el punto ámbar es el mejor hallazgo hasta ese momento y que el movimiento también toma en cuenta la experiencia de cada partícula. La curva, los puntos y las flechas ilustran la idea y no son datos del experimento.
+
+Estas son orientaciones. Hay GA con valores continuos y variantes discretas de PSO. Ninguno es universalmente superior: importa cómo se representa la solución, cómo se manejan las restricciones y cuántas evaluaciones caben en el presupuesto.
+
+Fuentes: [Aickelin y Dowsland (2000), turnos de enfermería](https://eprints.nottingham.ac.uk/616/1/00jofs_nurse.pdf) · [Ishaque et al. (2012), PSO para sistemas fotovoltaicos con sombra parcial](https://doi.org/10.1016/j.apenergy.2012.05.026) · [Kennedy y Eberhart (1995), PSO continuo](https://staff.washington.edu/paymana/swarm/kennedy95-ijcnn.pdf) · [Kennedy y Eberhart (1997), variante binaria](https://doi.org/10.1109/ICSMC.1997.637339).
 
 Transición: «Volvamos a la idea que comparten los dos métodos».
 -->
@@ -503,6 +647,16 @@ section: "APÉNDICE / FUENTES"
 Apéndice sin tiempo de exposición. Las fichas bibliográficas con enlaces y el registro de afirmaciones se encuentran en la carpeta investigacion.
 -->
 
+---
+layout: touring
+section: "CIERRE"
+tone: dark
+---
 
+<div class="thanks-slide">
+  <h1>Muchas gracias</h1>
+</div>
 
-
+<!--
+Cierre de la presentación.
+-->

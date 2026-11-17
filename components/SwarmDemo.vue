@@ -22,10 +22,12 @@ const descriptions = [
       <div class="swarm-visual">
         <TerrainChart :step="step" />
         <div class="swarm-legend" aria-label="Leyenda">
-          <span><i class="legend-mark position" aria-hidden="true" />Posición actual</span>
-          <span><i class="legend-mark previous" aria-hidden="true" />Posición anterior</span>
-          <span><i class="legend-mark memory" aria-hidden="true" />Memoria de A</span>
-          <span><i class="legend-mark best" aria-hidden="true" />Mejor del grupo</span>
+          <span class="particle-A"><i class="legend-mark position" aria-hidden="true" />A</span>
+          <span class="particle-B"><i class="legend-mark position" aria-hidden="true" />B</span>
+          <span class="particle-C"><i class="legend-mark position" aria-hidden="true" />C</span>
+          <span><i class="legend-mark previous" aria-hidden="true" />Anillo pequeño: posición anterior</span>
+          <span><i class="legend-mark memory" aria-hidden="true" />pbest de A</span>
+          <span><i class="legend-mark best" aria-hidden="true" />gbest</span>
         </div>
       </div>
 
@@ -43,7 +45,7 @@ const descriptions = [
     </div>
 
     <footer class="swarm-footer">
-      La velocidad previa se ajusta con la memoria personal y la mejor posición compartida. El enjambre evalúa cada nueva posición.
+      La velocidad previa se ajusta con la memoria personal y la mejor posición compartida. El enjambre evalúa cada nueva posición. Cuando A y C coinciden, los marcadores concéntricos señalan la misma posición.
     </footer>
   </section>
 </template>
@@ -78,21 +80,22 @@ const descriptions = [
   display: inline-block;
   width: 10px;
   height: 10px;
-  border: 1.5px solid var(--blue);
+  border: 1.5px solid var(--muted);
   border-radius: 50%;
 }
 
 .legend-mark.position {
-  background-color: var(--blue);
+  border-color: var(--particle-color);
+  background-color: var(--particle-color);
 }
 
 .legend-mark.memory {
   width: 9px;
   height: 9px;
   transform: rotate(45deg);
-  border-color: var(--teal);
+  border-color: var(--memory-color);
   border-radius: 0;
-  background-color: var(--teal);
+  background-color: var(--memory-color);
 }
 
 .legend-mark.best {

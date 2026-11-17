@@ -2,11 +2,11 @@
 
 **Proyecto** Algoritmos evolutivos / Swarm  
 **Equipo** Daniel Castro, Santiago Silva, Sebastián Ramírez y Nicolás Pinilla  
-**Verificación** 15 de noviembre de 2026
+**Verificación** 16 de noviembre de 2026
 
 ## 1. Resumen del proyecto
 
-Presentación universitaria en español de 15 diapositivas en formato 16:9. Cubre algoritmos genéticos (GA) y optimización por enjambre de partículas (PSO), con un terreno compartido como ejemplo y la antena evolucionada de NASA ST5 como caso de vuelo. Incluye tres secuencias de avance por teclado, notas del presentador y guion de ensayo.
+Presentación universitaria en español de 17 diapositivas en formato 16:9. Cubre algoritmos genéticos (GA) y optimización por enjambre de partículas (PSO), con un terreno compartido como ejemplo y la antena evolucionada de NASA ST5 como caso de vuelo. Incluye tres secuencias de avance por teclado, notas del presentador y guion de ensayo.
 
 ## 2. Investigación
 
@@ -20,13 +20,15 @@ Se consultaron la obra de Holland, el artículo original de Kennedy y Eberhart y
 | --- | --- | --- |
 | 1 | Portada | Equipo y tema |
 | 2–3 | Introducción | Problema, hitos y relación con aprendizaje |
-| 4–5 | Fundamentos teóricos | Aptitud y representación en GA. Posición, velocidad y memoria en PSO |
-| 6–7 | Algoritmo básico | Generación de GA e iteraciones de PSO en el mismo terreno |
-| 8 | Ventajas y desventajas | Exploración, costo y comparación con presupuesto fijo |
-| 9–10 | Aplicaciones y casos de uso | Tres ejemplos de investigación y antena NASA ST5 |
-| 11–12 | Comparación con otras técnicas | GA y PSO. Gradiente, búsqueda aleatoria, K-means y Random Forest |
-| 13–14 | Resumen y conclusiones | Mecanismos, criterios de uso y preguntas |
-| 15 | Referencias | Apéndice bibliográfico posterior al cierre oral |
+| 4 | Inspiración natural | Pinzones para GA y bandada de estorninos para PSO |
+| 5–6 | Fundamentos teóricos | Aptitud y representación en GA. Posición, velocidad y memoria en PSO |
+| 7–8 | Algoritmo básico | Generación de GA e iteraciones de PSO en el mismo terreno |
+| 9 | Ventajas y desventajas | Exploración, costo y comparación con presupuesto fijo |
+| 10–11 | Aplicaciones y casos de uso | Tres ejemplos de investigación y antena NASA ST5 |
+| 12–13 | Comparación con otras técnicas | GA frente a PSO. Casos de ImageNet, MNIST, turnos de enfermería y paneles solares |
+| 14–15 | Resumen y conclusiones | Mecanismos, criterios de uso y preguntas |
+| 16 | Referencias | Apéndice bibliográfico |
+| 17 | Muchas gracias | Cierre |
 
 El guion reserva 5:25 a Daniel, 5:30 a Santiago, 5:25 a Sebastián y 5:30 a Nicolás. Suma 21:50 de exposición y 2:40 de preguntas, para un total previsto de 24:30. La página de referencias puede consultarse sin asignación de tiempo en el guion.
 
@@ -36,6 +38,7 @@ La referencia adjunta definió el blanco cálido, el grafito, el azul intenso, e
 
 ## 5. Recursos
 
+- El diagrama de pinzones aportado por el usuario y la fotografía de estorninos de Walter Baxter se presentan juntos en la diapositiva 4. Sus fuentes están registradas en el documento de investigación.
 - Una fotografía local de 300 × 358 píxeles del prototipo ST5-33-142-7, acreditada a NASA/JPL-Caltech. Se cotejó la geometría con la figura 2(b) de Hornby et al. y se verificó que la copia tenga los mismos bytes que el archivo original.
 - Diagramas propios en SVG para el terreno, los vectores de PSO, las aplicaciones y las trayectorias de portada. Las flechas y gráficos se renderizan a partir de componentes Vue o HTML nativo.
 - Secuencias progresivas de selección, cruce y mutación, actualización de partículas y comparación de GA con PSO. El código del terreno calcula la aptitud y las posiciones reproducibles de los ejemplos.
@@ -54,8 +57,14 @@ Slidev 53.0.0, Vue 3.5.44, JavaScript/TypeScript, CSS, fuentes Fontsource y expo
 | Revisión visual | Se revisaron las 15 diapositivas en capturas de Chromium a 1280 × 720, se comprobó la portada y la vista general en Chrome y se renderizaron las 15 páginas del PDF con Poppler. Se corrigieron etiquetas SVG, contraste y espacio en la bibliografía y se volvieron a inspeccionar. |
 | Interacción | Se recorrieron con teclado los pasos de GA y PSO. Se verificaron los movimientos, cambios de aptitud y memoria, y las dos revelaciones y el retroceso de la comparación. |
 | Notas | La vista del presentador mostró las notas de PSO. El guion independiente coincide con los títulos, participantes y tiempos. |
-| PDF | Abre con 15 páginas 16:9 y folios en orden. Incluye los estados completos de ambas demostraciones y 17 enlaces en la página de referencias. |
-| PPTX | El paquete contiene 15 diapositivas 16:9, 15 imágenes PNG íntegras y sus archivos de notas. Se verificó la estructura del archivo. |
+| PDF | Abre con 17 páginas 16:9 y folios en orden. Incluye los estados completos de ambas demostraciones y 17 enlaces en la página de referencias. |
+| PPTX | El paquete contiene 17 diapositivas 16:9, 17 imágenes PNG íntegras y sus archivos de notas. Se verificó la estructura del archivo. |
+
+### Revisión de las mejoras didácticas
+
+- En una revisión anterior, se inspeccionaron las diapositivas a 1280 × 720. Las fotografías cargaron y se vieron sus créditos. La diapositiva «Una partícula con memoria» conserva el diagrama e incorpora la suma de tres contribuciones hipotéticas en una dimensión.
+- Las demostraciones de GA y PSO se recorrieron con las flechas de avance y retroceso entre los estados 0, 1, 2 y 3. En PSO se comprobaron los colores de las partículas y sus posiciones anteriores. En el tercer paso, A y C tienen el mismo centro y se distinguen por sus marcadores concéntricos.
+- El modelo del terreno y las simulaciones se conservaron.
 
 ## 8. Estado final
 

@@ -35,14 +35,22 @@ const markers = computed(() => {
   const particles = currentFrame.value?.particles ?? []
   return particles.map(({ name, x }) => {
     const nearby = particles.filter(particle => particle.x === x)
-    const label = nearby[0].name === name ? nearby.map(particle => particle.name).join(', ') : ''
-    return { name, x, label, offset: labelOffsets[name] }
+    const ring = nearby.findIndex(particle => particle.name === name)
+    const label = ring === 0 ? nearby.map(particle => particle.name).join(', ') : ''
+    return { name, x, label, ring, offset: labelOffsets[name] }
   })
 })
 
-const previousMarkers = computed(() => previousFrame.value?.particles.filter((particle, index) => (
-  particle.x !== currentFrame.value?.particles[index].x
-)))
+const previousMarkers = computed(() => {
+  const moved = previousFrame.value?.particles.filter((particle, index) => (
+    particle.x !== currentFrame.value?.particles[index].x
+  )) ?? []
+
+  return moved.map((particle, index) => ({
+    ...particle,
+    ring: moved.slice(0, index).filter(other => other.x === particle.x).length,
+  }))
+})
 
 const description = computed(() => currentFrame.value
   ? `Posiciones de las partículas en la iteración ${props.step} y mejor resultado conocido por el grupo.`
@@ -71,11 +79,12 @@ const description = computed(() => currentFrame.value
     <template v-if="currentFrame">
       <circle
         v-for="marker in previousMarkers" :key="marker.name"
-        :cx="scaleX(marker.x)" :cy="scaleY(heightAt(marker.x))" r="5" class="previous-marker"
+        :cx="scaleX(marker.x)" :cy="scaleY(heightAt(marker.x))" :r="5 + 3 * marker.ring"
+        class="previous-marker" :class="`particle-${marker.name}`"
       />
 
-      <g v-for="marker in markers" :key="marker.name" class="moving-marker" :style="markerPosition(marker.x)">
-        <circle r="7.5" class="particle-marker" />
+      <g v-for="marker in markers" :key="marker.name" class="moving-marker" :class="`particle-${marker.name}`" :style="markerPosition(marker.x)">
+        <circle :r="7.5 + 4 * marker.ring" class="particle-marker" :class="{ 'coincident-marker': marker.ring > 0 }" />
         <text :x="marker.offset.x" :y="marker.offset.y" class="particle-name">{{ marker.label }}</text>
       </g>
 
@@ -85,7 +94,7 @@ const description = computed(() => currentFrame.value
       </g>
 
       <g class="moving-marker" :style="markerPosition(currentFrame.bestX)">
-        <circle r="13" class="global-marker" />
+        <circle r="16" class="global-marker" />
       </g>
     </template>
 
@@ -180,20 +189,25 @@ const description = computed(() => currentFrame.value
 }
 
 .particle-marker {
-  fill: var(--blue);
+  fill: var(--particle-color);
   stroke: var(--paper);
   stroke-width: 2px;
 }
 
+.particle-marker.coincident-marker {
+  fill: none;
+  stroke: var(--particle-color);
+  stroke-width: 2.5px;
+}
+
 .previous-marker {
-  fill: var(--paper);
-  stroke: var(--blue);
-  stroke-width: 1.4px;
-  opacity: 0.75;
+  fill: none;
+  stroke: var(--particle-color);
+  stroke-width: 1.8px;
 }
 
 .personal-marker {
-  fill: var(--teal);
+  fill: var(--memory-color);
   stroke: var(--paper);
   stroke-width: 2px;
 }

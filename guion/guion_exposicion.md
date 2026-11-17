@@ -5,14 +5,14 @@ Introducción a la Inteligencia Artificial
 
 | Integrante | Diapositivas | Tiempo de exposición | Marca de relevo |
 | --- | --- | ---: | ---: |
-| Daniel Castro | 01–04 | 5:25 | 5:25 |
-| Santiago Silva | 05–07 | 5:30 | 10:55 |
-| Sebastián Ramírez | 08–10 | 5:25 | 16:20 |
-| Nicolás Pinilla | 11–14 | 5:30 | 21:50 |
-| **Exposición principal** | **01–14** | **21:50** | |
-| **Preguntas** | **14** | **2:40** | **24:30** |
+| Daniel Castro | 01–05 | 5:25 | 5:25 |
+| Santiago Silva | 06–08 | 5:30 | 10:55 |
+| Sebastián Ramírez | 09–11 | 5:25 | 16:20 |
+| Nicolás Pinilla | 12–15 | 5:30 | 21:50 |
+| **Exposición principal** | **01–15** | **21:50** | |
+| **Preguntas** | **15** | **2:40** | **24:30** |
 
-El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas de cada diapositiva indican el minuto de salida desde el inicio. En las diapositivas 06 y 07 hay tres avances internos y en la 11 hay dos. Usen la flecha derecha para revelar cada paso y lean las notas con la vista del presentador. Las fuentes se identifican con los mismos códigos de [la bibliografía](../investigacion/fuentes.md).
+El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas de cada diapositiva indican el minuto de salida desde el inicio. En las diapositivas 07 y 08 hay tres avances internos y en la 12 hay dos. Usen la flecha derecha para revelar cada paso y lean las notas con la vista del presentador. Las fuentes se identifican con los mismos códigos de [la bibliografía](../investigacion/fuentes.md).
 
 ## Daniel Castro · Introducción y fundamentos de GA
 
@@ -42,15 +42,23 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 - **Qué explicar.** En 1975, John Holland publicó su trabajo sobre algoritmos genéticos (GA, *Genetic Algorithm*, «Algoritmo Genético»): una población busca mejores soluciones mediante selección, cruce y mutación. En 1995, James Kennedy y Russell Eberhart presentaron PSO (*Particle Swarm Optimization*): cada partícula aprovecha lo que aprendió en sus recorridos y la mejor posición conocida por el grupo.
 - **Cómo decirlo.** «Si usamos PSO para elegir la configuración de un clasificador entrenado con etiquetas, el clasificador sigue haciendo aprendizaje supervisado. PSO decide qué configuración probar. Cuando optimizamos la forma de una antena, cada geometría se puede evaluar con criterios físicos».
 - **Apoyo visual.** Recorre las dos fechas y termina en la franja del tipo de aprendizaje. Si aparece la duda sobre hiperparámetros, explica que se entrenan los candidatos y se comparan en validación.
-- **Transición.** «Veamos cómo cambia una población en un algoritmo genético».
+- **Transición.** «Veamos de dónde vienen las ideas de ambos métodos».
 - **Fuentes.** [H75], [KE95], [L26], [SB18], [SkL].
 - **Retratos.** [John Holland, University of Michigan](https://lsa.umich.edu/cscs/people/in-memoriam/JohnHolland1929-2015.html); [Kennedy y Eberhart, rótulos de autores en la presentación de Victoria University of Wellington para ACISS 2009](https://ecs.wgtn.ac.nz/foswiki/pub/Groups/ECRG/ResearchTeam/vuw-pso-xli.pdf).
 
-### 04. Una población que cambia
+### 04. Dos inspiraciones en la naturaleza
 
-**Daniel Castro · 1:40 · Salida 5:25**
+**Daniel Castro · 0:45 · Salida 4:30**
 
-- **Qué explicar.** Define individuo, población, genotipo y aptitud con la tabla. Introduce selección, cruce y mutación. La regla de reemplazo determina qué individuos pasan a la siguiente generación.
+- **Apoyo visual.** Compara los picos de los pinzones con los alimentos que aprovecha cada uno. Las mutaciones aportan variación y el entorno influye en qué rasgos heredables se transmiten. Relaciona esa idea con la selección, el cruce y la mutación en GA.
+- **Cómo decirlo.** «La bandada se coordina aunque cada ave se mueva por su cuenta. En PSO, cada solución también se mueve, guiada por lo mejor que encontró ella y lo mejor que encontró el grupo».
+- **Transición.** «Veamos cómo se construye una generación del algoritmo genético».
+
+### 05. Una población que cambia
+
+**Daniel Castro · 0:55 · Salida 5:25**
+
+- **Qué explicar.** Usa la tabla para conectar una cadena de bits con su posición y altura. Introduce selección, cruce y mutación, y explica que el reemplazo forma la generación siguiente.
 - **Cómo decirlo.** «0101 es la manera de escribir la posición 5. En el terreno, esa posición vale 7. La aptitud orienta qué candidatos podrán reproducirse. Podemos recombinar fragmentos de dos candidatos y hacer pequeños cambios en los descendientes».
 - **Apoyo visual.** Señala los dos candidatos seleccionados, cuya altura es 7 y 9. En la demo ganan los de mayor aptitud. Otra variante puede favorecerlos de forma probabilística.
 - **Relevo a Santiago.** «Ya vimos qué se hereda cuando la población se renueva. Ahora, ¿qué conserva una partícula cuando se mueve?»
@@ -58,17 +66,17 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 
 ## Santiago Silva · Fundamentos de PSO y demostraciones
 
-### 05. Una partícula con memoria
+### 06. Una partícula con memoria
 
 **Santiago Silva · 1:30 · Salida 6:55**
 
 - **Qué explicar.** La posición es el candidato actual y la velocidad indica cuánto y en qué dirección cambia. Cada partícula conserva la mejor posición que visitó, llamada *pbest*. En la variante global, todas comparten el mejor registro detectado, llamado *gbest*.
 - **Cómo decirlo.** «La partícula combina algo de su movimiento anterior con dos atracciones. Una apunta al mejor lugar que ella recuerda. La otra apunta al mejor lugar que alguien del grupo encontró».
-- **Apoyo visual.** Sigue las tres flechas del diagrama. Señala que las atracciones pueden oponerse, como en el esquema. Las longitudes son ilustrativas. El máximo de todo el terreno puede estar más lejos que el mejor punto visitado.
+- **Apoyo visual.** Sigue las tres flechas y di: «La inercia empuja dos a la derecha. El mejor lugar personal tira uno a la izquierda y el mejor del grupo tira tres a la derecha. La suma da cuatro a la derecha». Usa el ejemplo como suma hipotética de contribuciones. La dirección final puede diferir de la de gbest. El óptimo de todo el terreno puede seguir siendo desconocido.
 - **Transición.** «Apliquemos cada mecanismo al terreno de la introducción».
 - **Fuentes.** [KE95], [SE98], [L26].
 
-### 06. Una generación en cuatro pasos
+### 07. Una generación en cuatro pasos
 
 **Santiago Silva · 1:50 · Salida 8:45**
 
@@ -81,7 +89,7 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 - **Transición.** «En ese mismo terreno, el enjambre puede visitar puntos entre los enteros y usar lo que recuerda de cada medición».
 - **Fuentes.** [H75], [L26], [comprobación de las alturas y las cadenas](../investigacion/verificacion.md#ga).
 
-### 07. Tres movimientos del enjambre
+### 08. Tres movimientos del enjambre
 
 **Santiago Silva · 2:10 · Salida 10:55**
 
@@ -89,14 +97,14 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 - **Apoyo visual.**
   1. **Primera iteración.** A llega a 6,5 y mide 4. Como mide menos que en 2, conserva el mejor personal anterior.
   2. **Segunda iteración.** B llega a 10,5 y mide 10. Su récord se convierte en el mejor del grupo.
-  3. **Tercera iteración.** B mide 11 en la posición 11. A y C llegan a 10,25. Señala la cima de 13 en la posición 12 para recuperar la diferencia entre el mejor hallazgo y el máximo del problema.
+  3. **Tercera iteración.** B mide 11 en la posición 11. A y C llegan a 10,25. Señala el punto azul y el anillo violeta que comparten ese centro. Los anillos pequeños del color de cada partícula muestran sus posiciones anteriores. Señala la cima de 13 en la posición 12 para recuperar la diferencia entre el mejor hallazgo y el máximo del problema.
 - **Cómo decirlo.** «Cada partícula calcula su movimiento con los récords de la ronda anterior. Luego visita el nuevo punto, mide su altura y actualiza el récord si mejoró». Aclara que los factores aleatorios se fijan en 0,5 para poder reproducir el ejemplo.
 - **Relevo a Sebastián.** «Ya vimos cómo exploran. ¿Cuánto cuesta esa búsqueda cuando salimos del ejemplo?»
 - **Fuentes.** [KE95], [SE98], [cálculo de velocidades y posiciones](../investigacion/verificacion.md#pso).
 
 ## Sebastián Ramírez · Ventajas, límites y aplicaciones
 
-### 08. El costo de explorar
+### 09. El costo de explorar
 
 **Sebastián Ramírez · 1:35 · Salida 12:30**
 
@@ -106,7 +114,7 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 - **Transición.** «Miremos qué cuenta como candidato y cómo se mide en tres estudios».
 - **Fuentes.** [L26], [R94], [V10], [COCO16].
 
-### 09. ¿Qué se está optimizando?
+### 10. ¿Qué se está optimizando?
 
 **Sebastián Ramírez · 1:40 · Salida 14:10**
 
@@ -116,7 +124,7 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 - **Transición.** «Ahora veamos cómo se representó una pieza que sí terminó en órbita».
 - **Fuentes.** [BA21], [HD08], [S18].
 
-### 10. Una antena evolucionada llegó a órbita
+### 11. Una antena evolucionada llegó a órbita
 
 **Sebastián Ramírez · 2:10 · Salida 16:20**
 
@@ -128,7 +136,7 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 
 ## Nicolás Pinilla · Comparación y cierre
 
-### 11. GA frente a PSO
+### 12. GA frente a PSO
 
 **Nicolás Pinilla · 1:50 · Salida 18:10**
 
@@ -138,17 +146,17 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 - **Transición.** «Para elegir un método de búsqueda, primero miremos qué información ofrece el problema».
 - **Fuentes.** [H75], [KE95], [SE98], [KE97], [L26].
 
-### 12. ¿Cuándo conviene usar GA o PSO?
+### 13. ¿Cuándo conviene usar GA o PSO?
 
 **Nicolás Pinilla · 1:55 · Salida 20:05**
 
-- **Qué explicar.** El descenso por gradiente aprovecha derivadas para obtener una dirección local. La búsqueda aleatoria es una línea base. GA y PSO se pueden considerar cuando se puede evaluar una solución y el gradiente resulta poco práctico. K-means agrupa sin etiquetas y Random Forest usa objetivos etiquetados para aprender a clasificar o predecir.
-- **Cómo decirlo.** «Una búsqueda externa puede probar valores de profundidad y número de árboles de un Random Forest. Entrena el modelo de cada configuración y usa su resultado en validación para elegir. El conjunto de prueba queda para estimar qué tan bien generaliza el modelo elegido».
-- **Apoyo visual.** Señala las dos zonas de la diapositiva para distinguir el método que busca una buena configuración del algoritmo que la usa para aprender.
+- **Qué explicar.** AlexNet usó descenso por gradiente para ajustar los pesos y reducir el error en ImageNet. En el estudio de MNIST se sortearon configuraciones de entrenamiento y se eligieron las mejores en validación. GA se probó con datos de un hospital británico para crear horarios de enfermería. Cada candidato es un horario semanal y se evalúa si cubre los turnos respetando los contratos. En el caso solar, PSO probó ajustes de un convertidor cuando los paneles reciben sombra parcial y usó la potencia medida para guiar la búsqueda.
+- **Cómo decirlo.** «En AlexNet sabemos hacia dónde ajustar los pesos para reducir el error. Al elegir una configuración, podemos sortear opciones y quedarnos con la que mejor funcione. Si probamos GA o PSO para esa misma tarea, usamos el mismo presupuesto de evaluaciones».
+- **Apoyo visual.** Señala la bajada del error, los puntos de prueba, las fotos ilustrativas de la estación de enfermería y los paneles con sombra parcial.
 - **Transición.** «Volvamos a lo que cambia de una iteración a otra en cada búsqueda».
-- **Fuentes.** [BV04], [BB12], [SkL], [HD08].
+- **Fuentes.** [KSH12], [BB12], [AD00], [ISSA12].
 
-### 13. Qué conserva cada búsqueda
+### 14. Qué conserva cada búsqueda
 
 **Nicolás Pinilla · 1:20 · Salida 21:25**
 
@@ -158,7 +166,7 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 - **Transición.** «Con esa idea, pensemos en cómo diseñaríamos una comparación».
 - **Fuentes.** [L26], [NASA06], [NASA07], [COCO16].
 
-### 14. Preguntas
+### 15. Preguntas
 
 **Nicolás Pinilla · 0:25 de apertura · Exposición hasta 21:50 · Preguntas hasta 24:30**
 
@@ -168,10 +176,14 @@ El plan deja 30 segundos de margen antes del límite de 25 minutos. Las marcas d
 - **Transición.** Consulta el apéndice si alguien pide la fuente exacta.
 - **Fuentes.** [COCO16] y [comprobación del ejemplo](../investigacion/verificacion.md).
 
-### 15. Referencias
+### 16. Referencias
 
 **Nicolás Pinilla · 0:00 · Apéndice de consulta**
 
 - **Uso.** Abre la diapositiva si alguien solicita una publicación. Los códigos enlazan con los trabajos a los que se hizo referencia.
 - **Ejemplo.** Para la antena, [NASA06] documenta el desarrollo y [NASA07] el uso durante el vuelo.
 - **Cierre.** Si se requiere el detalle de una fuente, comparte la ruta a [la bibliografía comentada](../investigacion/fuentes.md).
+
+### 17. Muchas gracias
+
+Cierra agradeciendo al público.

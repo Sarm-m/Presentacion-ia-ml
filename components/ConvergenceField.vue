@@ -1,54 +1,24 @@
 <script setup lang="ts">
-const target = { x: 529, y: 250 }
-const points = [
-  [87, 52], [142, 63], [199, 42], [39, 118], [89, 164], [163, 138],
-  [239, 121], [272, 142], [205, 206], [108, 225], [67, 273], [27, 333],
-  [135, 330], [178, 371], [79, 404], [34, 473], [65, 528], [155, 546],
-  [198, 491], [230, 445], [257, 531], [242, 68], [345, 64], [404, 111],
-  [337, 151], [383, 184], [455, 166], [482, 194], [383, 223], [424, 241],
-  [280, 274], [306, 315], [262, 359], [298, 416], [346, 402], [382, 358],
-  [368, 506], [436, 472], [465, 420], [497, 359], [565, 406], [595, 473],
-  [625, 436], [485, 498], [422, 326], [463, 304],
-]
-
-const paths = points.map(([x, y], index) => {
-  const endX = target.x - 18 + (index % 5) * 4
-  const endY = target.y + (index % 7 - 3) * 4
-  const side = x < target.x ? 1 : -1
-  const sweep = (target.y - y) * 0.46
-  const controlX = x + (endX - x) * 0.28
-  const controlY = y + sweep + (index % 3 - 1) * 31
-  return {
-    x, y,
-    path: `M ${x} ${y} C ${controlX} ${controlY} ${endX - side * 91} ${endY - sweep * 0.45} ${endX} ${endY}`,
-    radius: index < 21 ? 5.1 : 4.4,
-    tone: index < 21 ? 'var(--blue)' : 'var(--teal)',
-    opacity: index < 21 ? 0.28 : 0.34,
-  }
-})
-
-const arrows = [
-  [355, 235, 3], [399, 252, -1], [452, 243, 7], [416, 205, 22],
-  [466, 221, 28], [432, 284, -24], [487, 262, -24], [464, 322, -44],
-  [371, 334, -38], [500, 302, -59], [532, 316, -100], [566, 333, -122],
+const contours = [1, .82, .64, .46, .29, .14]
+const routes = [
+  { tone: 'var(--blue)', path: 'M 45 117 C 118 132 142 248 252 244 S 340 206 391 176', points: [[45,117],[144,207],[252,244]] },
+  { tone: 'var(--teal)', path: 'M 52 366 C 134 351 160 302 247 309 S 341 238 391 176', points: [[52,366],[150,329],[247,309]] },
+  { tone: 'var(--blue)', path: 'M 225 57 C 276 85 267 158 332 178 S 369 181 391 176', points: [[225,57],[281,139],[332,178]] },
+  { tone: 'var(--teal)', path: 'M 560 338 C 508 352 441 320 441 251 S 419 202 391 176', points: [[560,338],[474,321],[441,251]] },
 ]
 </script>
 
 <template>
-  <svg class="convergence" viewBox="0 0 680 586" role="img" aria-labelledby="convergence-title">
-    <title id="convergence-title">Trayectorias de búsqueda de varias soluciones hacia una región prometedora</title>
-    <g fill="none" stroke="var(--amber)" stroke-width="1" stroke-dasharray="6 8">
-      <circle v-for="(radius, index) in [22, 47, 81, 117, 160, 208]" :key="radius"
-        :cx="target.x" :cy="target.y" :r="radius" :opacity="0.82 - index * 0.08" />
+  <svg class="convergence" viewBox="0 0 600 445" role="img" aria-label="Cuatro trayectorias recorren un mapa de nivel hacia una solución prometedora">
+    <g v-for="scale in contours" :key="scale" :transform="'translate(391 176) scale(' + scale + ')'" fill="none">
+      <path d="M -207 8 C -197 -115 -101 -164 -8 -146 C 80 -129 172 -113 185 -36 C 205 46 141 171 28 172 C -82 175 -226 88 -207 8 Z"
+        stroke="var(--teal)" stroke-opacity=".28" vector-effect="non-scaling-stroke" />
     </g>
-    <g fill="none">
-      <path v-for="point in paths" :key="point.path" :d="point.path" :stroke="point.tone"
-        :opacity="point.opacity" :stroke-width="0.9" />
+    <g v-for="route in routes" :key="route.path">
+      <path :d="route.path" fill="none" :stroke="route.tone" stroke-width="2.4" stroke-linecap="round" />
+      <circle v-for="([x, y]) in route.points" :key="x" :cx="x" :cy="y" r="5" :fill="route.tone" stroke="var(--paper)" stroke-width="2" />
     </g>
-    <path v-for="([x, y, rotation], index) in arrows" :key="index" d="M -6 -4 L 6 0 L -6 4 Z"
-      :transform="'translate(' + x + ' ' + y + ') rotate(' + rotation + ')'" fill="var(--teal)" />
-    <circle v-for="point in paths" :key="point.path" :cx="point.x" :cy="point.y"
-      :r="point.radius" :fill="point.tone" />
-    <circle :cx="target.x" :cy="target.y" r="10.5" fill="var(--amber)" />
+    <circle cx="391" cy="176" r="16" fill="var(--paper)" stroke="var(--amber)" stroke-width="2" />
+    <circle cx="391" cy="176" r="8" fill="var(--amber)" />
   </svg>
 </template>
