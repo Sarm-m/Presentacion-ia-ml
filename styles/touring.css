@@ -73,7 +73,7 @@
 .cover-copy .cover-rule { display: block; background: var(--teal); width: 62px; height: 6px; margin: 26px 0 13px; }
 .touring .cover-copy p { font-size: 31px; line-height: 1.2; letter-spacing: -.031em; }
 .cover-team { position: absolute; left: 0; bottom: 89px; font-size: 17px; line-height: 1.5; color: var(--muted); }
-.convergence { position: absolute; width: 600px; height: auto; right: -13px; top: 94px; }
+.convergence { position: absolute; width: 695px; height: auto; right: -46px; top: 48px; }
 .touring-cover .footer-rule { flex: 0 1 350px; }
 .touring-cover .footer-source { display: none; }
 .cover-chromosome { position: absolute; right: 1px; bottom: 68px; width: 376px; height: 44px; }

@@ -1,24 +1,96 @@
 <script setup lang="ts">
-const contours = [1, .82, .64, .46, .29, .14]
-const routes = [
-  { tone: 'var(--blue)', path: 'M 45 117 C 118 132 142 248 252 244 S 340 206 391 176', points: [[45,117],[144,207],[252,244]] },
-  { tone: 'var(--teal)', path: 'M 52 366 C 134 351 160 302 247 309 S 341 238 391 176', points: [[52,366],[150,329],[247,309]] },
-  { tone: 'var(--blue)', path: 'M 225 57 C 276 85 267 158 332 178 S 369 181 391 176', points: [[225,57],[281,139],[332,178]] },
-  { tone: 'var(--teal)', path: 'M 560 338 C 508 352 441 320 441 251 S 419 202 391 176', points: [[560,338],[474,321],[441,251]] },
+type Point = readonly [number, number]
+
+const target: Point = [529, 250]
+const [targetX, targetY] = target
+
+const blueOrigins: Point[] = [
+  [87, 52], [142, 63], [199, 42], [39, 118], [89, 164], [163, 138],
+  [205, 206], [108, 225], [67, 273], [27, 333], [135, 330], [178, 371],
+  [79, 404], [34, 473], [65, 528], [155, 546], [198, 491], [257, 531],
+]
+
+const tealOrigins: Point[] = [
+  [242, 68], [345, 64], [404, 111], [337, 151], [383, 184], [455, 166],
+  [280, 274], [262, 359], [346, 402], [368, 506], [436, 472], [465, 420],
+  [497, 359], [565, 406], [595, 473], [625, 436], [485, 498],
+]
+
+function trajectory(origin: Point, index: number, color: string) {
+  const [x, y] = origin
+  const deltaX = targetX - x
+  const deltaY = targetY - y
+  const bend = (index % 3 - 1) * 25
+  const controlA: Point = [x + deltaX * .33, y + deltaY * .04 + bend]
+  const controlB: Point = [targetX - deltaX * .22, targetY - deltaY * .57]
+  const progress = .61 + (index % 4) * .045
+  const remaining = 1 - progress
+
+  const position = (axis: 0 | 1) =>
+    remaining ** 3 * origin[axis] + 3 * remaining ** 2 * progress * controlA[axis]
+    + 3 * remaining * progress ** 2 * controlB[axis] + progress ** 3 * target[axis]
+
+  const tangent = (axis: 0 | 1) =>
+    remaining ** 2 * (controlA[axis] - origin[axis])
+    + 2 * remaining * progress * (controlB[axis] - controlA[axis])
+    + progress ** 2 * (target[axis] - controlB[axis])
+
+  return {
+    x,
+    y,
+    color,
+    path: 'M ' + origin.join(' ') + ' C ' + controlA.join(' ') + ' ' + controlB.join(' ') + ' ' + target.join(' '),
+    accent: index % 3 === 0,
+    arrow: 'translate(' + position(0) + ' ' + position(1) + ') rotate('
+      + Math.atan2(tangent(1), tangent(0)) * 180 / Math.PI + ')',
+  }
+}
+
+const paths = [
+  ...blueOrigins.map((point, index) => trajectory(point, index, 'var(--blue)')),
+  ...tealOrigins.map((point, index) => trajectory(point, index, 'var(--teal)')),
 ]
 </script>
 
 <template>
-  <svg class="convergence" viewBox="0 0 600 445" role="img" aria-label="Cuatro trayectorias recorren un mapa de nivel hacia una solución prometedora">
-    <g v-for="scale in contours" :key="scale" :transform="'translate(391 176) scale(' + scale + ')'" fill="none">
-      <path d="M -207 8 C -197 -115 -101 -164 -8 -146 C 80 -129 172 -113 185 -36 C 205 46 141 171 28 172 C -82 175 -226 88 -207 8 Z"
-        stroke="var(--teal)" stroke-opacity=".28" vector-effect="non-scaling-stroke" />
+  <svg class="convergence" viewBox="0 0 680 586" role="img"
+    aria-label="Trayectorias azules y verdes hacia una región prometedora marcada en ámbar">
+    <defs>
+      <radialGradient id="cover-target-glow">
+        <stop stop-color="var(--amber)" stop-opacity=".18" />
+        <stop offset="1" stop-color="var(--amber)" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id="cover-trajectory-fade" gradientUnits="userSpaceOnUse"
+        :cx="targetX" :cy="targetY" r="90">
+        <stop offset=".12" stop-color="black" />
+        <stop offset="1" stop-color="white" />
+      </radialGradient>
+      <mask id="cover-trajectory-mask">
+        <rect width="680" height="586" fill="url(#cover-trajectory-fade)" />
+      </mask>
+    </defs>
+
+    <circle :cx="targetX" :cy="targetY" r="116" fill="url(#cover-target-glow)" />
+    <g fill="none" stroke="var(--amber)" stroke-width="1">
+      <ellipse v-for="(radius, index) in [28, 53, 86, 124, 168]" :key="radius"
+        :cx="targetX" :cy="targetY" :rx="radius" :ry="radius * .87"
+        :stroke-dasharray="index === 0 ? undefined : '4 8'"
+        :opacity=".8 - index * .12" />
     </g>
-    <g v-for="route in routes" :key="route.path">
-      <path :d="route.path" fill="none" :stroke="route.tone" stroke-width="2.4" stroke-linecap="round" />
-      <circle v-for="([x, y]) in route.points" :key="x" :cx="x" :cy="y" r="5" :fill="route.tone" stroke="var(--paper)" stroke-width="2" />
+
+    <g fill="none" mask="url(#cover-trajectory-mask)">
+      <path v-for="point in paths" :key="point.path" :d="point.path" :stroke="point.color"
+        :opacity="point.accent ? .53 : .23" :stroke-width="point.accent ? 1.65 : 1" />
     </g>
-    <circle cx="391" cy="176" r="16" fill="var(--paper)" stroke="var(--amber)" stroke-width="2" />
-    <circle cx="391" cy="176" r="8" fill="var(--amber)" />
+
+    <g v-for="point in paths" :key="point.path" :fill="point.color">
+      <circle :cx="point.x" :cy="point.y" :r="point.accent ? 5.5 : 4"
+        :opacity="point.accent ? 1 : .83" />
+      <path v-if="point.accent" d="M -4 -3.5 L 3.5 0 L -4 3.5 Z"
+        :transform="point.arrow" opacity=".9" />
+    </g>
+
+    <circle :cx="targetX" :cy="targetY" r="12" fill="var(--amber)"
+      stroke="var(--paper)" stroke-width="2" />
   </svg>
 </template>
